@@ -1,0 +1,5 @@
+.gizli
+*.vars
+build
+node_modules
+yarn.lock

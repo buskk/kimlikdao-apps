@@ -1,0 +1,21 @@
+account_id = "8f0c2f2271ff857947d9a5b2c38595a0"
+zone_id = "cb31764917040dd0b9a7b79e1ec099df"
+
+main = "../build/join/prod.js"
+name = "join-kimlikdao"
+route = { pattern = "join2.kimlikdao.org", custom_domain = true }
+usage_model = "bundled"
+
+workers_dev = false
+no_bundle = true
+minify = false
+send_metrics = false
+node_compat = false
+logpush = false
+
+rules = [{ type = "Text", globs = [], fallthrough = false }]
+
+[[kv_namespaces]]
+binding = "KV"
+id = "84ae9125ab654c4ca5511acbe63e269f"
+preview_id = "84ae9125ab654c4ca5511acbe63e269f"

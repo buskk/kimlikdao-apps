@@ -1,0 +1,96 @@
+ul {
+  margin: 0.5em;
+  padding: 0 1em;
+}
+
+li {
+  padding: 3px 0;
+}
+
+#job {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+#jobt {
+  margin: 20px 40px;
+}
+
+h4 {
+  margin: 0;
+}
+
+h3 {
+  margin: 0;
+}
+
+#jobs {
+  border-right: 1px rgba(0, 0, 0, 0.06) solid;
+}
+
+.jos {
+  color: rgba(60, 66, 66, 0.6);
+  margin: 30px 10px 0;
+}
+
+.joi {
+  height: 28px;
+}
+
+.joi, .jota {
+  border: 1px solid #c2c2c2;
+  border-radius: 4px;
+  outline: none;
+  margin: 2px 0 10px;
+}
+
+.jota {
+  width: 80%;
+  max-width: 500px;
+  min-height: 50px;
+}
+
+label {
+  font-weight: bold;
+}
+
+#job {
+  font-size: 10pt;
+}
+
+.joc {
+  cursor: pointer;
+  min-width: 150px;
+  margin: 5px 10px;
+  padding: 10px;
+  transition: 0.3s background-color, 0.5s color;
+  border-radius: 15px;
+}
+
+.joc.sel {
+  background: #4856b0;;
+  color: white;
+}
+
+.joc.sel:hover {
+  background: rgba(72, 86, 176, 0.8);
+}
+
+.joc:hover {
+  background-color: #f0f0f0
+}
+
+.jodt {
+  position: relative;
+  margin: 40px 40px 0;
+}
+
+.jodh {
+  margin: 0 0 1em;
+}
+
+#jof {
+  margin-bottom: 1em;
+}
