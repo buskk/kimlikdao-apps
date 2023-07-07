@@ -11,14 +11,11 @@
  */
 const JoinEnv = function () { };
 
-/** @const {!cloudflare.DurableObjectBinding} */
-JoinEnv.prototype.Applicants;
-
 /** @const {!cloudflare.KeyValue} */
 JoinEnv.prototype.KV;
 
-/**
- * @constructor
- * @extends {kimlikdao.ValidationRequest}
- */
-function ApplyRequest() { }
+/** @const {string} */
+JoinEnv.prototype.DKIM_PRIVATE_KEY;
+
+/** @const {string} */
+JoinEnv.prototype.APPLICATION_RECIPIENTS;

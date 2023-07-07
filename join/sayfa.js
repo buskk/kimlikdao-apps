@@ -5,9 +5,7 @@ import dom from "/lib/util/dom";
 import { KimlikDAO } from "/sdk/client";
 
 /** @const {!KimlikDAO} */
-const Client = new KimlikDAO({
-  validatorUrl: ""
-});
+const Client = new KimlikDAO();
 
 /** @const {Element} */
 const BaşvurDüğmesi = dom.adla("joba");
@@ -97,21 +95,24 @@ const cüzdanBağlandı = () => {
         )
           .then((/** @type {!kimlikdao.ValidationRequest} */ istek) => {
             istek["ilan"] = ilan;
+            istek["lang"] = dom.TR ? "tr" : "en";
             /** @const {!FormData} */
             const formData = new FormData(dom.adla("jof"));
             for (const entry of formData) {
               const value = entry[1];
               if (value) istek[entry[0]] = value;
             }
-            console.log(istek);
+            BaşvurDüğmesi.innerText = dom.TR ? "Başvurunuz yollanıyor ⏳" : "Sending your application ⏳";
             return fetch("/", {
               method: "POST",
               headers: { "content-type": "application/json;charset=utf-8" },
               body: JSON.stringify(istek)
             });
           })
-          .then(() => {
-            BaşvurDüğmesi.innerText = dom.TR ? "Başvurunuz alındı 👍" : "Got your application 👍";
+          .then((/** @type {!Response} */ res) => {
+            BaşvurDüğmesi.innerText = res.ok
+              ? dom.TR ? "Başvurunuz alındı 👍" : "Got your application 👍"
+              : dom.TR ? "Bir hata oluştur 🫨" : "There is an issue 🫨"
             dom.düğmeDurdur(BaşvurDüğmesi);
             setTimeout(() => {
               BaşvurDüğmesi.classList.remove("dis");

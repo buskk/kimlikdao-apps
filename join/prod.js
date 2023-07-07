@@ -1,4 +1,4 @@
-import { Validator } from "/sdk/server-js/validator";
+import { processApplication } from "./başvuru.js";
 
 // Has to end with a slash
 /** @define {string} */
@@ -24,59 +24,12 @@ const PAGES = {
 };
 
 /**
- * @param {!kimlikdao.Challenge} challenge
- * @return {boolean}
- */
-const validateChallenge = (challenge) => {
-  /** @const {number} */
-  const now = Date.now();
-  /** @const {number} */
-  const nonce = /** @type {number} */(challenge.nonce);
-  /** @const {string} */
-  const formatted = new Date(nonce).toISOString()
-    .slice(0, 16).replaceAll('-', '.').replace('T', ' ');
-
-  return nonce < now + 1000 && nonce + 6e8 > now &&
-    challenge.text.endsWith(formatted);
-}
-
-/** @const {!Validator} */
-const TCKTValidator = new Validator({
-  "0xa86a": "https://api.avax-test.network/ext/bc/C/rpc",
-  "0x1": "https://cloudflare-eth.com",
-  "0x89": "https://polygon-rpc.com",
-  "0xa4b1": "https://arb1.arbitrum.io/rpc",
-  "0x38": "https://bsc-dataseed3.binance.org",
-}, null, validateChallenge);
-
-/**
  * @return {!Response}
  */
 const err = () => new Response("NAPİM?", {
   status: 404,
   headers: { "content-type": "text/plain;charset=utf-8" }
 })
-
-/**
- * @override
- *
- * @param {!cloudflare.Request} req
- * @param {!JoinEnv} env
- * @param {!cloudflare.Context} ctx
- * @return {!Promise<!Response>}
- */
-const processApplication = (req, env, ctx) => req
-  .json()
-  .then((applyRequest) =>
-    TCKTValidator.validate(/** @type {!kimlikdao.ValidationRequest} */(applyRequest))
-      .then((/** @type {!kimlikdao.ValidationReport} */ report) => {
-        /** @const {!did.PersonInfo} */
-        const personInfo = /** @type {!did.PersonInfo} */(
-          /** @type {!kimlikdao.ValidationRequest} */(applyRequest).decryptedSections["personInfo"]);
-        console.log(report.isValid);
-        return new Response(JSON.stringify(report));
-      })
-  )
 
 /**
  * @implements {cloudflare.ModuleWorker}

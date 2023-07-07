@@ -51,10 +51,10 @@ build/join-%.html: join/sayfa.html \
 build/join.sayfa: $(call compressions,build/join-en.html build/join-tr.html)
 
 build/join/prod.js: join/prod.js join/prod.d.js \
+    join/başvuru.d.js join/başvuru.js \
     lib/api/jsonrpc.d.js lib/api/jsonrpc.js \
     lib/cloudflare/types.d.js \
     lib/cloudflare/moduleWorker.d.js \
-    lib/cloudflare/durableObject.d.js \
     lib/crypto/modular.js lib/crypto/secp256k1.js lib/crypto/sha3.js \
     lib/did/*.d.js lib/did/section.js \
     lib/ethereum/*.d.js lib/ethereum/evm.js \
