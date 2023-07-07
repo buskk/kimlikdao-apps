@@ -122,7 +122,7 @@ const sendApplicationEmail = (application, env, isValid) => {
           `<tr><td>Ad:</td><td>${personInfo.first} ${personInfo.last}</td></tr>` +
           `<tr><td>TCKN:</td><td>${personInfo.localIdNumber.slice(2)}</td></tr>` +
           (application.github
-            ? `<tr><td>Github:</td><td>${application.github}</td></tr>`
+            ? `<tr><td>Github:</td><td><a href="https://github.com/${application.github.slice(1)}">${application.github}</a></td></tr>`
             : "") +
           (application.twitter
             ? `<tr><td>Twitter:</td><td>${application.twitter}</td></tr>`
