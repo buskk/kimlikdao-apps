@@ -1,5 +1,5 @@
 ul {
-  margin: 0.5em;
+  margin: 0.2em 0.5em 1em;
   padding: 0 1em;
 }
 
@@ -18,11 +18,11 @@ li {
   margin: 20px 40px;
 }
 
-h4 {
+h3 {
   margin: 0;
 }
 
-h3 {
+h4 {
   margin: 0;
 }
 
@@ -35,15 +35,21 @@ h3 {
   margin: 30px 10px 0;
 }
 
+.joz {
+  margin: 1.2em 0 0;
+}
+
 .joi {
   height: 28px;
 }
 
-.joi, .jota {
+.joi,
+.jota {
   border: 1px solid #c2c2c2;
   border-radius: 4px;
   outline: none;
   margin: 2px 0 10px;
+  font-size: 13px;
 }
 
 .jota {
@@ -70,7 +76,8 @@ label {
 }
 
 .joc.sel {
-  background: #4856b0;;
+  background: #4856b0;
+  ;
   color: white;
 }
 
@@ -88,7 +95,7 @@ label {
 }
 
 .jodh {
-  margin: 0 0 1em;
+  margin: 0 0 1.5em;
 }
 
 #jof {

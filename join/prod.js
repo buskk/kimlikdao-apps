@@ -1,8 +1,8 @@
-import { processApplication } from "./başvuru.js";
+import { başvuruAl } from "./başvuru.js";
 
 // Has to end with a slash
 /** @define {string} */
-const HOST_URL = "https://join2.kimlikdao.org/";
+const HOST_URL = "https://join.kimlikdao.org/";
 /** @const {string} */
 const PAGE_CACHE_CONTROL = "max-age=90,public";
 /** @const {string} */
@@ -45,7 +45,7 @@ const JoinWorker = {
    */
   fetch(req, env, ctx) {
     if (req.method == "POST")
-      return processApplication(req, env, ctx);
+      return başvuruAl(req, env, ctx);
     /** @const {string} */
     const url = req.url;
     /** @const {string} */
