@@ -1,0 +1,19 @@
+account_id = "8f0c2f2271ff857947d9a5b2c38595a0"
+
+main = "../build/bulten/bulten.js"
+name = "kimlikdao-bulten"
+route = { pattern = "bulten.kimlikdao.org", custom_domain = true }
+usage_model = "unbound"
+
+workers_dev = false
+no_bundle = true
+minify = false
+send_metrics = false
+node_compat = false
+logpush = false
+
+rules = [{ type = "Text", globs = [], fallthrough = false }]
+
+[[kv_namespaces]]
+binding = "KV"
+id = "e417c376ba744bb89593ac9cdf52b33b"
