@@ -44,7 +44,7 @@ const tamam = () => new Response("👍", {
  */
 const çıkSayfası = (anahtar) => new Response(
   '<!doctypehtml><html lang=tr><meta charset=utf-8>' +
-  `<form id=f method="post" action="${anahtar}">` +
+  `<form id=f method="post" action="/${anahtar}">` +
   '<button type="submit" name="List-Unsubscribe" value="One-Click" alt="Unsubscribe">Abonelikten çık</button>' +
   "</form>" /* + "<script>setTimeout(()=>document.getElementById('f').submit(),5000)</script>" */, {
   headers: { "content-type": "text/html;charset=utf-8" }
@@ -71,8 +71,9 @@ const Bulten = {
       return Response.redirect("https://blog.kimlikdao.org/?bulten");
 
     if (path.length == 20)
-      return req.text().then((text) => {
-        if (text.toLowerCase().replaceAll(" ", "") == "list-unsubscribe=one-click")
+      return req.formData().then((formData) => {
+        if (/** @type {string} */(formData.get("List-Unsubscribe"))
+          .toLowerCase().replaceAll(" ", "") == "one-click")
           ctx.waitUntil(env.KV.delete(path))
         return tamam();
       });
