@@ -24,3 +24,9 @@ BultenEnv.prototype.KV;
 
 /** @const {string} */
 BultenEnv.prototype.DKIM_PRIVATE_KEY;
+
+/** @const {string} */
+BultenEnv.prototype.HASH_SALT;
+
+/** @const {string} */
+BultenEnv.prototype.BEARER_TOKEN;

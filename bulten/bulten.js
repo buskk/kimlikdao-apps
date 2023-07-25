@@ -1,12 +1,6 @@
 import { keccak256 } from "../lib/crypto/sha3";
 
 /** @define {string} */
-const BEARER_TOKEN = "BEARER_TOKEN_PLACEHOLDER";
-
-/** @define {string} */
-const HASH_SALT = "HASH_SALT_PLACEHOLDER";
-
-/** @define {string} */
 const URL = "https://bulten.kimlikdao.org/";
 
 /** @const {!Array<string>} */
@@ -18,15 +12,16 @@ const AyAdları = [
 
 /**
  * @param {string} email
+ * @param {string} hashSalt
  * @return {string} email saklama anahtarı
  */
-const emailAnahtarı = (email) => {
+const emailAnahtarı = (email, hashSalt) => {
   /** @const {Array<string>} */
   const bölümler = email.split("@");
   /** @const {string} */
   const emailKökü = bölümler[0].split("+")[0];
 
-  return keccak256(HASH_SALT
+  return keccak256(hashSalt
     + (bölümler[1] == "gmail.com" ? emailKökü.replaceAll(".", "") : emailKökü)
     + "@" + bölümler[1]).slice(0, 20);
 }
@@ -79,11 +74,11 @@ const Bulten = {
       });
 
     /** @const {boolean} */
-    const yetkili = req.headers.get("authorization")?.slice(7) == BEARER_TOKEN;
+    const yetkili = req.headers.get("authorization")?.slice(7) == env.BEARER_TOKEN;
     if (path == "ekle")
       return req.json().then((kayıt) => {
         /** @const {string} */
-        const anahtar = emailAnahtarı(/** @type {Kayıt} */(kayıt).email);
+        const anahtar = emailAnahtarı(/** @type {Kayıt} */(kayıt).email, env.HASH_SALT);
         if (yetkili || !/** @type {Kayıt} */(kayıt).ad)
           ctx.waitUntil(env.KV.put(anahtar, "", { metadata: kayıt }))
         return tamam();

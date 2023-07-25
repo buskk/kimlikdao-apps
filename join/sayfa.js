@@ -147,6 +147,26 @@ const sıfırla = () => {
     (e) => e.nextElementSibling.innerText = "");
 }
 
+const anonimBaşvur = () => {
+
+}
+
+/**
+ * @param {Response} res
+ */
+const başvuruSonrası = (res) => {
+  if (!res) return;
+  sıfırla();
+  BaşvurDüğmesi.innerText = res.ok
+    ? dom.TR ? "Başvurunuz alındı 👍" : "Got your application 👍"
+    : dom.TR ? "Bir hata oluştur 🫨" : "There is an issue 🫨"
+  dom.düğmeDurdur(BaşvurDüğmesi);
+  setTimeout(() => {
+    BaşvurDüğmesi.classList.remove("dis");
+    cüzdanBağlandı();
+  }, 3000);
+}
+
 /**
  * Başvuru için gereken bilgileri toplayıp join.kimlikdao.org'a POST'lar.
  */
@@ -180,18 +200,7 @@ const başvur = () => {
         body: JSON.stringify(istek)
       })
     }).catch(cüzdanBağlandı)
-      .then((/** @type {Response} */ res) => {
-        if (!res) return;
-        sıfırla();
-        BaşvurDüğmesi.innerText = res.ok
-          ? dom.TR ? "Başvurunuz alındı 👍" : "Got your application 👍"
-          : dom.TR ? "Bir hata oluştur 🫨" : "There is an issue 🫨"
-        dom.düğmeDurdur(BaşvurDüğmesi);
-        setTimeout(() => {
-          BaşvurDüğmesi.classList.remove("dis");
-          cüzdanBağlandı();
-        }, 3000);
-      })
+      .then(başvuruSonrası)
   })
 }
 

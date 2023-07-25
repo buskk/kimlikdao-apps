@@ -1,13 +1,9 @@
-include bulten/.gizli
-
 build/bulten/bulten.js: bulten/bulten.js bulten/bulten.d.js bulten/Makefile \
     lib/cloudflare/types.d.js \
     lib/cloudflare/moduleWorker.d.js \
     lib/crypto/sha3.js \
     lib/util/çevir.js
 	yarn google-closure-compiler -W VERBOSE -O ADVANCED --charset UTF-8 \
-                             --define "BEARER_TOKEN\$$\$$module\$$bulten\$$bulten=$(BEARER_TOKEN)" \
-                             --define "HASH_SALT\$$\$$module\$$bulten\$$bulten=$(HASH_SALT)" \
                              --jscomp_error=checkTypes \
                              --jscomp_error=strictCheckTypes \
                              --jscomp_error=unusedLocalVariables \
